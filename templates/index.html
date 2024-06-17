@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .actions {
+            display: flex;
+        }
+        .actions a {
+            text-decoration: none;
+            padding: 5px 10px;
+            margin-left: 5px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .actions .edit {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .actions .edit:hover {
+            background-color: #45a049;
+        }
+        .actions .delete {
+            background-color: #f44336;
+            color: white;
+        }
+        .actions .delete:hover {
+            background-color: #f22f26;
+        }
+        form {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 60%;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #007A99;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Task Manager</h1>
+        <ul>
+            {{#each tasks}}
+            <li>
+                <span>{{this}}</span>
+                <div class="actions">
+                    <a href="/edit/{{@index}}" class="edit">Edit</a>
+                    <a href="/delete/{{@index}}" class="delete">Delete</a>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+        <form action="/create" method="POST">
+            <input type="text" name="task" placeholder="Enter a new task" required>
+            <button type="submit">Add Task</button>
+        </form>
+    </div>
+</body>
+</html>
